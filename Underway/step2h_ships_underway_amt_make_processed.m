@@ -15,7 +15,9 @@ function tmp = step2h_ships_underway_amt_make_processed(doy, DIR_GPS, GLOB_GPS, 
    global FN_ROOT_STEP2
 
    % Get total files saved (uses Surfmetv3; GPS and TSG will have same number of files)
-   din_gps = glob([DIR_GPS GLOB_GPS num2str(doy)]);
+   
+   din_gps =  glob([DIR_GPS GLOB_GPS num2str(doy)]);
+
    if length(din_gps)>1
       disp('found more than one file');
       keyboard()
@@ -33,8 +35,9 @@ function tmp = step2h_ships_underway_amt_make_processed(doy, DIR_GPS, GLOB_GPS, 
 
       % read ship's underway data
       % Load GPS files
-      tmp1 = FNC_GPS([din_gps{1} '/' FN_GPS]);
-      tmp2 = FNC_METDATA([din_met{1} '/' FN_METDATA]);
+      
+      tmp1 = FNC_GPS([din_gps{1}]); # modified for AMT 24 (due to GPS files being named differently)
+      tmp2 = FNC_METDATA([din_met{1}]);# modified for AMT 24 (due to to met files being named differently)
 
       % create daily time vector with one record per minute of the day (24*60=1440)
       tmp.time = y0(YYYY)-1 + doy + [0:1440-1]'/1440; # time vector to match 1-min binned optics data 
