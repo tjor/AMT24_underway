@@ -15,10 +15,12 @@ function step1par(jday)
 
    % Create date range
    [numdates, strdates, vecdates, jdays] = get_date_range(inidate,enddate);
+  
+
    % Get strdates corresponding to jday
    strdate = strdates(jdays==jday,:);
 
-   doy = sprintf('%d',jday);
+   doy = sprintf('%d',jday);#
    % Check if save file exists
    savefile = [savedir, fproc_name , doy, '.mat'];
 
@@ -96,7 +98,7 @@ function step1par(jday)
    % We assume that flow will always be there
    flow = bindata_new(strdate, 1);
    flow_v = bindata_new(strdate, 1);
-
+#keyboard
    first_hour = 1
    last_hour = size(wapfiles,1)
 
