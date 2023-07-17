@@ -80,6 +80,7 @@ function step1par(jday)
                acsNoWL2 = get_acs_NoWL(D_CAL_FILES, ACS_CAL_FILE_NAME);   	
                acs2.raw = bindata_new(strdate, acsNoWL2*2);
                acs2.anc = bindata_new(strdate, 5);
+              
            case 'ac9'
                ac9.raw = bindata_new(strdate, 9*2)
            case 'bb3'
@@ -102,7 +103,7 @@ function step1par(jday)
    first_hour = 1
    last_hour = size(wapfiles,1)
 
-   for ihour = first_hour:last_hour  %reads each hour of data and assign the data to their specific structures
+   for ihour = first_hour:last_hour %reads each hour of data and assign the data to their specific structures
    % for ihour = last_hour-1:last_hour  %reads each hour of data and assign the data to their specific structures
 
       disp([fn1 ' ' (wapfiles{ihour,2})]);
@@ -152,6 +153,7 @@ function step1par(jday)
                  WAPvars.acs = acs;
 
               case 'acs2' 
+        
                   tmp_acs2 = tmp_WAPvars.acs2;
                   % AC-S
                   acs2.awl = tmp_acs2.awl;  
@@ -161,9 +163,12 @@ function step1par(jday)
                   acs2.a_T_cal = tmp_acs2.a_T_cal;
                   acs2.c_T_cal = tmp_acs2.c_T_cal;
                   acs2.T_bins = tmp_acs2.T_bins;
+    
                   acs2.anc = bindata_merge(acs2.anc, tmp_acs2.time, tmp_acs2.anc);
                   acs2.raw = bindata_merge(acs2.raw, tmp_acs2.time, tmp_acs2.raw(:,:));
                  % Save to output var
+                 
+                 
                  WAPvars.acs2 = acs2;
 
               case 'bb3'
@@ -207,7 +212,8 @@ function step1par(jday)
    if (exist(savefile,"file"))
             tmp_WAPvars = load(savefile);
             % Check if file is different by comparing the index of first available ctd measure
-            if min(find(~isnan(WAPvars.ctd.mean(:,1)))) != min(find(~isnan(tmp_WAPvars.WAPvars.ctd.mean(:,1))))
+            #if min(find(~isnan(WAPvars.ctd.mean(:,1)))) != min(find(~isnan(tmp_WAPvars.WAPvars.ctd.mean(:,1))))
+                    if min(find(~isnan(WAPvars.acs2.raw.mean(:,20)))) != min(find(~isnan(tmp_WAPvars.WAPvars.acs2.raw.mean(:,20)))) # 20th 
                 % If file not the same, then merge the two
                 WAPvars = merge_WAPvars(WAPvars,tmp_WAPvars.WAPvars);
             endif

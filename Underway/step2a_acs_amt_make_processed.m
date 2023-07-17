@@ -59,10 +59,10 @@ function acsout = step2a_acs_amt_make_processed(acs, dailyfile, idays, acs_lim, 
 
 
    % this is to skip ACs processng or when there are no ACs data
-   if (FORCE != 1 & (~exist('acs')) |  all(isnan(acs.raw.med(:,1))))
-      keyboard
-      return     
-   endif
+  # if (FORCE != 1 & (~exist('acs')) |  all(isnan(acs.raw.med(:,1))))
+  #    keyboard
+  #    return     
+   #endif
 
 
    % Apply ac-s QC
@@ -118,7 +118,6 @@ function acsout = step2a_acs_amt_make_processed(acs, dailyfile, idays, acs_lim, 
    tmp_fi_c_u = reshape(tmp_fi_c_u, n_wv, xTF, size(acs.raw.prc(i_fl,n_wv+1:end),1)/xTF);
    med_fi_c_u = median(tmp_fi_c_u, 2);
    med_fi_c_u = reshape(med_fi_c_u, n_wv,size(acs.raw.prc(i_fl,n_wv+1:end),1)/xTF)';
-
 
    %store filtered data (DO NOT CONFUSE with read ay measurements: these are just the filtered signals)
    acs.cdom.a = med_fi_a;
@@ -187,11 +186,11 @@ function acsout = step2a_acs_amt_make_processed(acs, dailyfile, idays, acs_lim, 
    %axis([188 189 0 .25])
    set(gca, 'ylim', acs_lim);
    title('raw a_p')
-   hold off
 
-   if acstype == 'acs'
+
+   if length(acstype) == 3 # acs 
        fnout = [DIR_FIGS 'raw_ap_' dailyfile.name(end-6:end-4)  '.png'];
-   elseif acstype == 'acs2'
+   elseif length(acstype) == 4 # acs2
        fnout = [DIR_FIGS 'raw_ap_acs2_' dailyfile.name(end-6:end-4)  '.png'];
    endif
    print('-dpng', fnout)
@@ -209,9 +208,10 @@ function acsout = step2a_acs_amt_make_processed(acs, dailyfile, idays, acs_lim, 
    title('raw c_p')
    hold off    
 
-   if acstype == 'acs'
+
+   if length(acstype) == 3 # acs 
        fnout = [DIR_FIGS 'raw_cp_' dailyfile.name(end-6:end-4)  '.png'];
-   elseif acstype == 'acs2'
+   elseif length(acstype) == 4 # acs2
        fnout = [DIR_FIGS 'raw_cp_acs2_' dailyfile.name(end-6:end-4)  '.png'];
    endif
    print('-dpng', fnout)
@@ -260,9 +260,9 @@ function acsout = step2a_acs_amt_make_processed(acs, dailyfile, idays, acs_lim, 
    % ---GRG---
    % interpolate awl and cwl to match the band centers of a and c onto a common wavelength array (acs.wl)
    acs.wl = acs_wv;
-
    %interpolate cp
    acs.int.cp = acs.int.cp_u = nan(size(acs.cp,1), length(acs.wl));
+  
    acs.int.cp(i_nn,:) = interp1(acs.cwl, acs.cp_nostep(i_nn,:)', acs.wl, 'extrap')';
    acs.int.cp_u(i_nn,:) = interp1(acs.cwl, acs.cp_nostep_u(i_nn,:)', acs.wl, 'extrap')';
    
@@ -301,9 +301,10 @@ function acsout = step2a_acs_amt_make_processed(acs, dailyfile, idays, acs_lim, 
          acs.Tsb_corr.ap(i_nn(iap),:) = aTbcorr;
          acs.Tsb_corr.ap_u(i_nn(iap),:) = ap_err;
 
-         if acstype == 'acs'
+      
+         if length(acstype) == 3 # acs 
              save iap.txt iout -ascii
-         elseif acstype == 'acs2'
+         elseif length(acstype) == 4 # acs2 
              save iap_acs2.txt iout -ascii
          endif
 
@@ -337,16 +338,13 @@ function acsout = step2a_acs_amt_make_processed(acs, dailyfile, idays, acs_lim, 
 
    if exist(savefile, 'file')
       load(savefile);
-   endif
-
-   if acstype == 'acs'
+   
+   if length(acstype) == 3 # acs 
        out.acs = acs.Tsb_corr;
        out.acs.wv = acs.wl;
-
-   elseif acstype == 'acs2'
+   elseif length(acstype) == 4 # acs2 
        out.acs2 = acs.Tsb_corr;
        out.acs2.wv = acs.wl;
-
    endif
 
    save('-v6', savefile , 'out' )

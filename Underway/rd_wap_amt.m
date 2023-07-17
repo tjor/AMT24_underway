@@ -238,8 +238,11 @@ function WAPvars = rd_wap_amt(flowdir, filename, fileext, dh8_instruments, dh8_p
 
    else
       disp('No time from DH8, need to read it from somewhere else')
-       #  keyboard
-      pctime_minus_bb349time = datenum([00 00 00 6 42 27]) ;
+      #  keyboard
+      # pctime_minus_bb349time = datenum([00 00 00 00 00 00]) ;
+      #pctime_minus_bb349time = datenum([00 00 00 6 42 27]) ;
+      pctime_minus_bb349time = datenum([00 00 00 7 59 39]); # 
+      #pctime_minus_bb349time = datenum([00 00 00 00 20 00]) ;
 
       pctime_from_bb349 =  time_bb3_old + pctime_minus_bb349time;  % corrects bb349 time based on mean difference computed from bb3time_2_pctime.m
 
@@ -249,6 +252,7 @@ function WAPvars = rd_wap_amt(flowdir, filename, fileext, dh8_instruments, dh8_p
       pctime1 = 60*60*1000;  %this is the number of msec in one hour
 
       pctime = pctime_from_bb349; # re-define, so can be saved in WAP vars
+
    endif
   
 

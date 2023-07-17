@@ -23,19 +23,57 @@ CRUISE = "AMT24";
 % dates
  
  
-# default config #
-inidate = "20141001"; #  jday 274 - use as test day
-enddate = "20141001"; 
+# default config # ACS 122 system
+#inidate = "20141001"; #  jday 274 - use as test day
+#enddate = "20141001"; 
 #inidate = "20140925"; #  jday 268 - start hr 14
-#enddate = "20141029"; #  jday 302 - end hr 7
-WAP_ROOT = strcat(lower(CRUISE),'_14') 
-dh8_instruments = {"bb3", "acs"};
-dh8_ports = {2,4}; 
-dh8_serialnumber = {1173,122}; 
-WAPhour = "14";
-ACS_CAL_FILE_NAME = "acs122_20140904.dev";
+#enddate = "20140927"; #  date when ACS breaks
+#WAP_ROOT = strcat(lower(CRUISE),'_14') 
+#dh8_instruments = {"bb3", "acs"};
+#dh8_ports = {2,4}; 
+#dh8_serialnumber = {1173,122}; 
+#WAPhour = "14";
+#ACS_CAL_FILE_NAME = "acs122_20140904.dev";
 #ACS_CAL_FILE_NAME = "acs167.dev";
 %-----------------------------
+
+# ACS 167 system
+#inidate = "20141001"; #  jday 274 - use as test day
+#enddate = "20141001";
+inidate = "20141020" 
+enddate = "20141028"; #  jday 302 - end hr 7
+WAP_ROOT = strcat(lower(CRUISE),'_14') 
+dh8_instruments = {"bb3", "acs2"};
+dh8_ports = {2,4}; 
+dh8_serialnumber = {1173,167}; 
+WAPhour = "14";
+#ACS_CAL_FILE_NAME = "acs122_20140904.dev";
+ACS_CAL_FILE_NAME = "acs167.dev";
+
+#  ACS 167 system with AC9
+# inidate = "20141001"; #  jday 274 - use as test day
+# enddate = "20141001"; 
+#inidate = "20141030"; #  
+#enddate = "20141031"; #  
+#WAP_ROOT = strcat('amt24_withAC9','_14') 
+#dh8_instruments = {"bb3", "acs2"};
+#dh8_ports = {2,4}; 
+#dh8_serialnumber = {1173,167}; 
+#WAPhour = "10";
+#ACS_CAL_FILE_NAME = "acs122_20140904.dev";
+#ACS_CAL_FILE_NAME = "acs167.dev";
+
+# default config # use for step2
+#inidate = "20141029"; #  jday 268 - start hr 14
+#enddate = "20141030"; #  date when ACS breaks
+#WAP_ROOT = strcat(lower(CRUISE),'_14') 
+#dh8_instruments = {"bb3", "acs"};
+#dh8_ports = {2,4}; 
+#dh8_serialnumber = {1173,122}; 
+#WAPhour = "14";
+#ACS_CAL_FILE_NAME = "acs122_20140904.dev";
+#ACS_CAL_FILE_NAME = "acs167.dev";
+
 
 % Underway subdirectory where to find special wapped data
 % Leave with simple / if no special case
@@ -109,8 +147,7 @@ D_CAL_FILES = [PATH_DATA, UWAY_DIR, "devs/"];
 
 %-----------------------------
 % ACS calibration file
-ACS_CAL_FILE_NAME = "acs122_20140904.dev";
-#ACS_CAL_FILE_NAME = "acs167.dev";
+
 %-----------------------------
 
 %-----------------------------

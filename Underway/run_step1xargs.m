@@ -27,7 +27,7 @@
 
       % Find indices of file with strdates(i,:) in name
       itmp = find_index_strdate_in_glob(WAPdays,sprintf('%d',jdays(i)));
-  
+
       % itmp must be a 1 element array (one file per daily cast)
       % Return error messages if it is not
       if length(itmp) == 0
