@@ -26,29 +26,29 @@ CRUISE = "AMT24";
 # default config # ACS 122 system
 #inidate = "20141001"; #  jday 274 - use as test day
 #enddate = "20141001"; 
-#inidate = "20140925"; #  jday 268 - start hr 14
-#enddate = "20140927"; #  date when ACS breaks
-#WAP_ROOT = strcat(lower(CRUISE),'_14') 
-#dh8_instruments = {"bb3", "acs"};
-#dh8_ports = {2,4}; 
-#dh8_serialnumber = {1173,122}; 
-#WAPhour = "14";
-#ACS_CAL_FILE_NAME = "acs122_20140904.dev";
+inidate = "20141009"; #  jday 268 - start hr 14
+enddate = "20141009"; #  date when ACS breaks
+WAP_ROOT = strcat(lower(CRUISE),'_14') 
+dh8_instruments = {"bb3", "acs"};
+dh8_ports = {2,4}; 
+dh8_serialnumber = {1173,122}; 
+WAPhour = "14";
+ACS_CAL_FILE_NAME = "acs122_20140904.dev";
 #ACS_CAL_FILE_NAME = "acs167.dev";
 %-----------------------------
 
 # ACS 167 system
 #inidate = "20141001"; #  jday 274 - use as test day
 #enddate = "20141001";
-inidate = "20141020" 
-enddate = "20141028"; #  jday 302 - end hr 7
-WAP_ROOT = strcat(lower(CRUISE),'_14') 
-dh8_instruments = {"bb3", "acs2"};
-dh8_ports = {2,4}; 
-dh8_serialnumber = {1173,167}; 
-WAPhour = "14";
+#inidate = "20141020" 
+#enddate = "20141028"; #  jday 302 - end hr 7
+#WAP_ROOT = strcat(lower(CRUISE),'_14') 
+#dh8_instruments = {"bb3", "acs2"};
+#dh8_ports = {2,4}; 
+#dh8_serialnumber = {1173,167}; 
+#WAPhour = "14";
 #ACS_CAL_FILE_NAME = "acs122_20140904.dev";
-ACS_CAL_FILE_NAME = "acs167.dev";
+#ACS_CAL_FILE_NAME = "acs167.dev";
 
 #  ACS 167 system with AC9
 # inidate = "20141001"; #  jday 274 - use as test day
