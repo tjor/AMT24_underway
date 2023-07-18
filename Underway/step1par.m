@@ -213,8 +213,9 @@ function step1par(jday)
             tmp_WAPvars = load(savefile);
             % Check if file is different by comparing the index of first available ctd measure
             #if min(find(~isnan(WAPvars.ctd.mean(:,1)))) != min(find(~isnan(tmp_WAPvars.WAPvars.ctd.mean(:,1))))
-                    if min(find(~isnan(WAPvars.acs2.raw.mean(:,20)))) != min(find(~isnan(tmp_WAPvars.WAPvars.acs2.raw.mean(:,20)))) # 20th 
+                    if min(find(~isnan(WAPvars.acs.raw.mean(:,20)))) != min(find(~isnan(tmp_WAPvars.WAPvars.acs.raw.mean(:,20)))) # 20th 
                 % If file not the same, then merge the two
+              
                 WAPvars = merge_WAPvars(WAPvars,tmp_WAPvars.WAPvars);
             endif
         endif

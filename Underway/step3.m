@@ -375,11 +375,17 @@ save('-v6', [DIR_STEP3 lower(CRUISE) '_optics.mat'], lower(CRUISE))
 %  save -ascii surface_optics_amt22.dat out
 
 
+figure 
+plot(amt_optics.uway.time-t0+1, log10(abs(amt_optics.acs2.chl)))
+hold on
+plot(amt_optics.uway.time-t0+1, log10(abs(amt_optics.acs.chl)),'r')
+xlim([280,284])
 
 figure 
 plot(amt_optics.uway.lat, log10(abs(amt_optics.acs2.chl)))
 hold on
 plot(amt_optics.uway.lat, log10(abs(amt_optics.acs.chl)),'r')
+ylim([-2,0])
 
 #figure
 #plot(amt_optics.uway.time, amt_optics.uway.lat) 
